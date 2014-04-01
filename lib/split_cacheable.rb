@@ -1,8 +1,8 @@
 require 'pry'
-require 'split'
 require "split_cacheable/version"
 require 'split_cacheable/helper'
 require 'split_cacheable/engine' if defined?(Rails) && Rails::VERSION::MAJOR >= 3
+require 'split'
 
 module Split
     module Cacheable
@@ -70,3 +70,10 @@ module Split
         end
     end
 end
+
+# if defined?(Rails)
+#   class ActionController::Base
+#     ActionController::Base.send :include, Split::Cacheable::Helper
+#     ActionController::Base.helper Split::Cacheable::Helper
+#   end
+# end

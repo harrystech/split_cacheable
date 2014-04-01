@@ -1,5 +1,5 @@
 module Split
-	class Cacheable
+	module Cacheable
 		VERSION = "0.0.1"
 	end
 end

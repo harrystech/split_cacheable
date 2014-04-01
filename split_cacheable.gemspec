@@ -1,7 +1,7 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-# require 'split_cacheable/version'
+require 'split_cacheable/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "split_cacheable"

@@ -4,7 +4,7 @@ module Split
             @@ab_tests = Array.new
 
             def current_tests_and_variations
-                Split::Cacheable.new(self, self.action_name.to_sym).get_current_variation
+                Split::Cacheable::Adapter.new(self, self.action_name.to_sym).get_current_variation
             end
 
             def self.enable_ab_test(test_name, options)
