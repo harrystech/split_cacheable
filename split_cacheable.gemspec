@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = Split::Cacheable::VERSION
   spec.authors       = ["Daniel Schwartz"]
   spec.email         = ["dschwartz88@gmail.com"]
-  spec.summary       = %q{A caching gem for Split}
-  spec.description   = %q{A caching gem for Split}
-  spec.homepage      = ""
+  spec.summary       = %q{We use action caching in Rails 3 to cache both our standard and mobile site. We wanted to be able to quickly run Split tests without worrying about setting a custom cache_path each time as well as remembering to make the needed changes to our ActiveRecord models.}
+  spec.description   = %q{An extension to Split to allow for automatic cache bucket creation accross Split tests.}
+  spec.homepage      = "https://github.com/harrystech/split_cacheable"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
