@@ -2,11 +2,14 @@ ENV['RACK_ENV'] = "test"
 
 require 'rubygems'
 require 'bundler/setup'
+require 'mock_redis'
 require 'split'
 require 'ostruct'
 require 'split/helper'
 require 'split_cacheable'
 require 'split_cacheable/helper'
+
+Split.redis = MockRedis.new
 
 Split.configure do |config|
     config.enabled = true

@@ -18,10 +18,11 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "split"
-  spec.add_dependency "activesupport"
+  spec.add_dependency "split", "~> 0.7.1"
+  spec.add_dependency "activesupport", ">= 3.2.17"
 
   spec.add_development_dependency "rspec", "~>  2.14"
   spec.add_development_dependency "pry"
   spec.add_development_dependency "pry-byebug"
+  spec.add_development_dependency "mock_redis", "~> 0.11.0"
 end
