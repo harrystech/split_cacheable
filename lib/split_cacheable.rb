@@ -1,7 +1,6 @@
-require 'pry'
 require "split_cacheable/version"
 require 'split_cacheable/helper'
-require 'split_cacheable/engine' if defined?(Rails) && Rails::VERSION::MAJOR >= 3
+require 'split_cacheable/engine' if defined?(Rails) && Rails::VERSION::MAJOR === 3
 require 'split'
 
 module Split
