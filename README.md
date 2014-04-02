@@ -79,5 +79,5 @@ Note that we don't evaluate the `:if` option when you instantiate the controller
 
 ## Development
 
-Source hosted at [GitHub](http://github.com/harrystech/split_cacheable).
+Source hosted at [GitHub](http://github.com/harrystech/split_cacheable).<br>
 Report Issues/Feature requests on [GitHub Issues](http://github.com/harrystech/split_cacheable/issues).
