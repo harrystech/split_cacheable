@@ -1,21 +1,32 @@
 module Split
     module Cacheable
         module Helper
-            @@ab_tests = Array.new
-
-            def current_tests_and_variations
-                Split::Cacheable::Adapter.new(self, self.action_name.to_sym).get_current_variation
+            def self.included(base)
+                base.send :include, InstanceMethods
+                base.extend ClassMethods
             end
 
-            def self.enable_ab_test(test_name, options)
-                options[:except] = Array(options[:except])
-                options[:only] = Array(options[:only])
+            module InstanceMethods
+                def fragment_cache_key(key)
+                    super("#{current_tests_and_variations}/#{key}")
+                end
 
-                @@ab_tests << options.merge({:test_name => test_name})
+                def current_tests_and_variations
+                    Split::Cacheable::Adapter.new(self, self.action_name.to_sym).get_current_variations
+                end
             end
 
-            def self.ab_tests
-                @@ab_tests
+            module ClassMethods
+                def cacheable_ab_test(test_name, options)
+                    options[:except] = Array(options[:except])
+                    options[:only] = Array(options[:only])
+
+                    self.split_cacheable_ab_tests << options.merge({:test_name => test_name})
+                end
+
+                def split_cacheable_ab_tests
+                    @split_cacheable_ab_tests ||= Array.new
+                end
             end
         end
     end

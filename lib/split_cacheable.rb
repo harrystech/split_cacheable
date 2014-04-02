@@ -15,7 +15,7 @@ module Split
             end
 
             def active_tests
-                ab_tests = @controller.class.ab_tests.select { |test_obj|
+                ab_tests = @controller.class.split_cacheable_ab_tests.select { |test_obj|
                     is_active = false
 
                     if test_obj[:only].include?(@action_name)
@@ -38,7 +38,7 @@ module Split
                 }
             end
 
-            def get_current_variation
+            def get_current_variations
                 if !@controller.request
                     return DEFAULT_KEY
                 else
@@ -70,10 +70,3 @@ module Split
         end
     end
 end
-
-# if defined?(Rails)
-#   class ActionController::Base
-#     ActionController::Base.send :include, Split::Cacheable::Helper
-#     ActionController::Base.helper Split::Cacheable::Helper
-#   end
-# end
