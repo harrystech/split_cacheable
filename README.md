@@ -43,23 +43,23 @@ class ProductController < ApplicationController
 end
 ```
 
-* `:login_flow`: The name of the test as it appears in your Split configuration.
+* `:login_flow`: The name of the test as it appears in your Split configuration
 * `:only`: A symbol or an array of symbols corresponding to the action names you'd like this test to run for
 * `:except`: A symbol or an array of symbols corresponding to the action names you'd like to exclude from the test (it will run on all actions not listed here)
-* `:if`: A boolean value or Proc to be evaluated at runtime. THe current controller instance is passed into the Proc for you to use.
+* `:if`: A boolean value or Proc to be evaluated at runtime. The current controller instance is passed into the Proc for you to use
 
-Only include either `:only` or `:except`, if you include both, `:only` will take precedence.
+Only include either `:only` or `:except` -- if you include both, `:only` will take precedence.
 
 ## Outside Controller Access
 
-If you'd like to manually expire your action caches in models/sweeper/whereever we give you access to create an instance of the adapter use internally.
+If you'd like to manually expire your action caches in models/sweeper/wherever we give you access to create an instance of the adapter use internally.
 
 ### Instantiate an adapter
 
 `Split::Cacheable::Adapter.new(<controller_instance>, <action_name>)`
 
 * `controller_instance`: A new instance of an ActionController::Base subclass
-* `action_name`: A symbol that corresponds to the action you want uncache
+* `action_name`: A symbol that corresponds to the action you want to uncache
 
 ex: `Split::Cacheable::Adapter.new(ProductController.new, :index)`
 
@@ -75,7 +75,7 @@ Split::Cacheable::Adapter.new(ProductController.new, :index).get_all_possible_va
 }
 ```
 
-Note that we don't evaluate the `:if` option when you instantiate the controller manually. This is because we assume Proc's will usually be used to decide whether to show the test based on the current request. By not evaluating the `:if``s in this scenario we are able to return all possible cache keys regardless of request type. 
+Note that we don't evaluate the `:if` option when you instantiate the controller manually. This is because we assume `Proc`s will usually be used to decide whether to show the test based on the current request. By not evaluating the `:if`s in this scenario we are able to return all possible cache keys regardless of request type. 
 
 ## Development
 
