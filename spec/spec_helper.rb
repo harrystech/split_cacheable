@@ -2,6 +2,8 @@ ENV['RACK_ENV'] = "test"
 
 require 'rubygems'
 require 'bundler/setup'
+require 'pry'
+require 'pry-byebug'
 require 'mock_redis'
 require 'split'
 require 'ostruct'
