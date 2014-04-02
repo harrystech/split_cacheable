@@ -81,3 +81,5 @@ Note that we don't evaluate the `:if` option when you instantiate the controller
 
 Source hosted at [GitHub](http://github.com/harrystech/split_cacheable).<br>
 Report Issues/Feature requests on [GitHub Issues](http://github.com/harrystech/split_cacheable/issues).
+
+[![TravisCI](https://travis-ci.org/harrystech/split_cacheable.png)](https://travis-ci.org/harrystech/split_cacheable)
