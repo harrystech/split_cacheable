@@ -45,7 +45,7 @@ end
 
 * `:login_flow`: The name of the test as it appears in your Split configuration.
 * `:only`: A symbol or an array of symbols corresponding to the action names you'd like this test to run for
-* `:except`: A symbol or an array of symbols corresponding to the action names you'd like to exclude from the test (it will run on all actions not listed here
+* `:except`: A symbol or an array of symbols corresponding to the action names you'd like to exclude from the test (it will run on all actions not listed here)
 * `:if`: A boolean value or Proc to be evaluated at runtime. THe current controller instance is passed into the Proc for you to use.
 
 Only include either `:only` or `:except`, if you include both, `:only` will take precedence.
