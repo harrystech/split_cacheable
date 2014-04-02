@@ -1,3 +1,5 @@
+require 'pry'
+require 'pry-byebug'
 require "split_cacheable/version"
 require 'split_cacheable/helper'
 require 'split_cacheable/engine' if defined?(Rails) && Rails::VERSION::MAJOR === 3
@@ -29,14 +31,14 @@ module Split
                         is_active = true
                     end
 
-                    if !test_obj[:only] && test_obj[:except].exclude?(@action_name)
+                    if test_obj[:only].empty? && !test_obj[:except].include?(@action_name)
                         is_active = true
                     end
 
                     # The assumption here is that we should only evaluate the :if Proc or Boolean
                     # if we are part of a live ActionController::Base.
                     # This allows active_tests to return all possible active tests for when you call get_all_possible_variations
-                    if @controller.request && test_obj[:if]
+                    if (defined?(@controller.request) && !@controller.request.nil?) && test_obj[:if]
                         if is_active && (test_obj[:if].is_a?(Proc) ? test_obj[:if].call(@controller) : !!test_obj[:if])
                             is_active = true
                         else
@@ -54,7 +56,7 @@ module Split
             #
             # You should not be calling this method outside of a live ActionController::Base
             def get_current_variations
-                if !@controller.request
+                if !defined?(@controller.request) || @controller.request.nil?
                     return DEFAULT_KEY
                 else
                     return !active_tests.empty? ? active_tests.map{|test_obj| "#{test_obj[:test_name]}/#{@controller.ab_test(test_obj[:test_name])}"}.join('/') : DEFAULT_KEY
