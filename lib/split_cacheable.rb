@@ -78,7 +78,7 @@ module Split
 
                 case test_variations.length
                 when 0
-                    return []
+                    return [DEFAULT_KEY]
                 when 1
                     return test_variations[0]
                 else
