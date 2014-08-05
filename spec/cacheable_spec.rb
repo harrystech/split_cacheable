@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Split::Cacheable do
-    ALL_VARIATIONS = ["test_1/old/test_2/left", "test_1/old/test_2/right", "test_1/new/test_2/left", "test_1/new/test_2/right", Split::Cacheable::Adapter::DEFAULT_KEY]
+    ALL_VARIATIONS = [Split::Cacheable::Adapter::DEFAULT_KEY, "test_1/old/test_2/left", "test_1/old/test_2/right", "test_1/new/test_2/left", "test_1/new/test_2/right"]
 
     it "should return the default variation if there is no request" do
         Split::Cacheable::Adapter.new(TestControllerWithoutRequest.new, :index).get_current_variations.should eql Split::Cacheable::Adapter::DEFAULT_KEY
@@ -33,7 +33,7 @@ describe Split::Cacheable do
         end
 
         it "should return one test plus the default key when there is one test" do
-            Split::Cacheable::Adapter.new(TestControllerWithOneVariation.new, :index).get_all_possible_variations.should eql ["test_1/old", "test_1/new", Split::Cacheable::Adapter::DEFAULT_KEY]
+            Split::Cacheable::Adapter.new(TestControllerWithOneVariation.new, :index).get_all_possible_variations.should eql [Split::Cacheable::Adapter::DEFAULT_KEY, "test_1/old", "test_1/new"]
         end
     end
 end

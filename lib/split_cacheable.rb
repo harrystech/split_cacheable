@@ -80,12 +80,12 @@ module Split
                 when 0
                     return [DEFAULT_KEY]
                 when 1
-                    test_variations[0] << DEFAULT_KEY
+                    test_variations[0].unshift(DEFAULT_KEY)
                     return test_variations[0]
                 else
                     first_test = test_variations.shift
                     all_variations = first_test.product(*test_variations).map{|a| a.join("/")}
-                    all_variations << DEFAULT_KEY
+                    all_variations.unshift(DEFAULT_KEY)
                     return all_variations
                 end
             end
