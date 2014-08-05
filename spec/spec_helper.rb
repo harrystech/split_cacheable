@@ -47,6 +47,13 @@ class TestControllerWithoutRequest
     end
 end
 
+class TestControllerWithNoVariations < TestControllerWithoutRequest
+end
+
+class TestControllerWithOneVariation < TestControllerWithoutRequest
+    cacheable_ab_test :test_1, :only => :index
+end
+
 class TestControllerWithRequest < TestControllerWithoutRequest
     cacheable_ab_test :test_1, :only => :index
     cacheable_ab_test :test_2, :except => :show
