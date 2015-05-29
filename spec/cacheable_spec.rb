@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Split::Cacheable do
-    ALL_VARIATIONS = [Split::Cacheable::Adapter::DEFAULT_KEY, "test_1/old/test_2/left", "test_1/old/test_2/right", "test_1/new/test_2/left", "test_1/new/test_2/right"]
+    ALL_VARIATIONS = [Split::Cacheable::Adapter::DEFAULT_KEY, "test_1/old", "test_1/new", "test_2/left", "test_2/right", "test_1/old/test_2/left", "test_1/old/test_2/right", "test_1/new/test_2/left", "test_1/new/test_2/right"]
 
     it "should return the default variation if there is no request" do
         expect(Split::Cacheable::Adapter.new(TestControllerWithoutRequest.new, :index).get_current_variations).to eql Split::Cacheable::Adapter::DEFAULT_KEY
@@ -34,6 +34,10 @@ describe Split::Cacheable do
 
         it "should return one test plus the default key when there is one test" do
             expect(Split::Cacheable::Adapter.new(TestControllerWithOneVariation.new, :index).get_all_possible_variations).to eql [Split::Cacheable::Adapter::DEFAULT_KEY, "test_1/old", "test_1/new"]
+        end
+
+        it "should return all possible variations of the cachekey when controller has multiple tests on same action" do
+            expect(Split::Cacheable::Adapter.new(TestControllerWithRequestAndMultiTestOnSameAction.new, :index).get_all_possible_variations).to eql ALL_VARIATIONS
         end
     end
 end
