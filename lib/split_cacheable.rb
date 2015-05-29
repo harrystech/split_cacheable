@@ -67,7 +67,7 @@ module Split
             # Use this to clear all your action_caches
             def get_all_possible_variations
                 test_variations = Array.new
-                active_tests.each { |test_obj|  
+                active_tests.each { |test_obj|
                     split_test = Split::ExperimentCatalog.find(test_obj[:test_name])
                     if split_test
                         test_variations << split_test.alternatives.map { |alternative|
@@ -83,8 +83,12 @@ module Split
                     test_variations[0].unshift(DEFAULT_KEY)
                     return test_variations[0]
                 else
-                    first_test = test_variations.shift
-                    all_variations = first_test.product(*test_variations).map{|a| a.join("/")}
+                    all_variations = []
+                    test_variations.each.with_index(1) do |value, index|
+                        test_variations.combination(index).each do |set|
+                            all_variations += set.first.product(*set[1..-1]).map{|a| a.join("/")}
+                        end
+                    end
                     all_variations.unshift(DEFAULT_KEY)
                     return all_variations
                 end

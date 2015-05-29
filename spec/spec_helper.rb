@@ -81,3 +81,8 @@ class TestControllerWithRequestAndProc < TestControllerWithRequest
         @is_mobile
     end
 end
+
+class TestControllerWithRequestAndMultiTestOnSameAction < TestControllerWithRequest
+    cacheable_ab_test :test_1, :only => :index
+    cacheable_ab_test :test_2, :only => :index
+end
