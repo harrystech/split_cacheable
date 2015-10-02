@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.version       = Split::Cacheable::VERSION
   spec.authors       = ["Daniel Schwartz"]
   spec.email         = ["dschwartz88@gmail.com"]
-  spec.summary       = %q{We use action caching in Rails 3 to cache both our standard and mobile site. We wanted to be able to quickly run Split tests without worrying about setting a custom cache_path each time as well as remembering to make the needed changes to our ActiveRecord models.}
+  spec.summary       = %q{We use action caching in Rails to cache both our standard and mobile site. We wanted to be able to quickly run Split tests without worrying about setting a custom cache_path each time as well as remembering to make the needed changes to our ActiveRecord models.}
   spec.description   = %q{An extension to Split to allow for automatic cache bucket creation accross Split tests.}
   spec.homepage      = "https://github.com/harrystech/split_cacheable"
   spec.license       = "MIT"
@@ -19,7 +19,8 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency "split", "~> 1.0.0"
-  spec.add_dependency "activesupport", ">= 3.2.17"
+  spec.add_dependency "activesupport", ">= 4.0"
+  spec.add_dependency "actionpack-action_caching"
 
   spec.add_development_dependency "rspec", ">= 2.14"
   spec.add_development_dependency "pry", ">= 0"
