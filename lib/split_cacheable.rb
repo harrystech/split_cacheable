@@ -1,6 +1,8 @@
 require "split_cacheable/version"
 require 'split_cacheable/helper'
-require 'split_cacheable/engine' if defined?(Rails) && [3, 4].include?(Rails::VERSION::MAJOR)
+if defined?(Rails) && [3, 4].include?(Rails::VERSION::MAJOR) && ActionController::Base.method_defined?(:fragment_cache_key)
+    require 'split_cacheable/engine'
+end
 require 'split'
 
 # This is the main Adapter instance. It expects:

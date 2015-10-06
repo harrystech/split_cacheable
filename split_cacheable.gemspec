@@ -19,8 +19,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency "split", "~> 1.0.0"
-  spec.add_dependency "activesupport", ">= 4.0"
-  spec.add_dependency "actionpack-action_caching"
+  spec.add_dependency "activesupport", ">= 3.2.22"
 
   spec.add_development_dependency "rspec", ">= 2.14"
   spec.add_development_dependency "pry", ">= 0"
