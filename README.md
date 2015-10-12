@@ -18,9 +18,9 @@ Then run:
 
 ### Rails 4
 
-Because this gem uses action caching, a feature removed from Rails 4, you will also need to include the `protected_attributes` gem in your Gemfile:
+Because this gem uses action caching, a feature removed from Rails 4, you will also need to include the `actionpack-action_caching` gem in your Gemfile:
 
-    gem 'protected_attributes'
+    gem 'actionpack-action_caching'
 
 Then run:
 

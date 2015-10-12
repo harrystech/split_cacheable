@@ -1,6 +1,6 @@
 require "split_cacheable/version"
 require 'split_cacheable/helper'
-if defined?(Rails) && [3, 4].include?(Rails::VERSION::MAJOR) && ActionController::Base.method_defined?(:fragment_cache_key)
+if defined?(Rails) && [3, 4].include?(Rails::VERSION::MAJOR) && ActionController::Base.methods.include?(:caches_action)
     require 'split_cacheable/engine'
 end
 require 'split'

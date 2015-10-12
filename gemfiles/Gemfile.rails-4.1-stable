@@ -3,4 +3,4 @@ source "https://rubygems.org"
 gemspec path: '..'
 
 gem 'activesupport', '~> 4.1.13'
-gem 'protected_attributes'
+gem 'actionpack-action_caching'
