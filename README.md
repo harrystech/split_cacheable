@@ -16,13 +16,23 @@ Then run:
 
     bundle install
 
+### Rails 4
+
+Because this gem uses action caching, a feature removed from Rails 4, you will also need to include the `actionpack-action_caching` gem in your Gemfile:
+
+    gem 'actionpack-action_caching'
+
+Then run:
+
+    bundle install
+
 ## Why?
 
-We use action caching in Rails 3 to cache both our standard and mobile site. We wanted to be able to quickly run Split tests without worrying about setting a custom cache_path each time as well as remembering to make the needed changes to our ActiveRecord models. 
+We use action caching in Rails 3 to cache both our standard and mobile site. We wanted to be able to quickly run Split tests without worrying about setting a custom cache_path each time as well as remembering to make the needed changes to our ActiveRecord models.
 
-## How? 
+## How?
 
-Under the hood, action caching uses `fragment_cache_key` in `ActionController::Base`. This gem patches this method to incldue our generated current tests and variations. 
+Under the hood, action caching uses `fragment_cache_key` in `ActionController::Base`. This gem patches this method to incldue our generated current tests and variations.
 
 If you already override `fragment_cache_key` in your project you can get the split partial cache key we generate by calling `current_tests_and_variations`
 
@@ -33,12 +43,12 @@ We've created an easy to remember DSL for adding active tests to specific method
 ```
 class ProductController < ApplicationController
     cacheable_ab_test :login_flow,
-        :only => [:index, :some_other_method], 
-        :except => [:index, :some_other_method], 
+        :only => [:index, :some_other_method],
+        :except => [:index, :some_other_method],
         :if => Proc.new { |controller| controller.mobile_device? }
-        
+
     def index
-    
+
     end
 end
 ```
@@ -75,7 +85,7 @@ Split::Cacheable::Adapter.new(ProductController.new, :index).get_all_possible_va
 }
 ```
 
-Note that we don't evaluate the `:if` option when you instantiate the controller manually. This is because we assume `Proc`s will usually be used to decide whether to show the test based on the current request. By not evaluating the `:if`s in this scenario we are able to return all possible cache keys regardless of request type. 
+Note that we don't evaluate the `:if` option when you instantiate the controller manually. This is because we assume `Proc`s will usually be used to decide whether to show the test based on the current request. By not evaluating the `:if`s in this scenario we are able to return all possible cache keys regardless of request type.
 
 ## Development
 

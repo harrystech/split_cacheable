@@ -1,6 +1,8 @@
 require "split_cacheable/version"
 require 'split_cacheable/helper'
-require 'split_cacheable/engine' if defined?(Rails) && Rails::VERSION::MAJOR === 3
+if defined?(Rails) && [3, 4].include?(Rails::VERSION::MAJOR) && ActionController::Base.methods.include?(:caches_action)
+    require 'split_cacheable/engine'
+end
 require 'split'
 
 # This is the main Adapter instance. It expects:
@@ -72,7 +74,7 @@ module Split
                     if split_test
                         test_variations << split_test.alternatives.map { |alternative|
                             "#{split_test.name}/#{alternative.name}"
-                        } 
+                        }
                     end
                 }
 
