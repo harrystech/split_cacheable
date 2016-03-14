@@ -18,7 +18,7 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "split", "~> 1.0.0"
+  spec.add_dependency "split", ">= 1.0.0", "< 1.4"
   spec.add_dependency "activesupport", ">= 3.2.22"
 
   spec.add_development_dependency "rspec", ">= 2.14"

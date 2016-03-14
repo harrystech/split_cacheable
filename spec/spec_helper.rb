@@ -35,7 +35,7 @@ class TestControllerWithoutRequest
     cacheable_ab_test :test_1, :only => :index
     cacheable_ab_test :test_2, :except => :show
     def index
-            
+
     end
 
     def session
@@ -58,7 +58,7 @@ class TestControllerWithRequest < TestControllerWithoutRequest
     cacheable_ab_test :test_1, :only => :index
     cacheable_ab_test :test_2, :except => :show
     def index
-        
+
     end
 
     def request(ua = 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_6; de-de) AppleWebKit/533.20.25 (KHTML, like Gecko) Version/5.0.4 Safari/533.20.27')
@@ -72,9 +72,9 @@ end
 class TestControllerWithRequestAndProc < TestControllerWithRequest
     cacheable_ab_test :test_1, :only => :index, :if => Proc.new { |c| c.mobile_device? }
     cacheable_ab_test :test_2, :except => :show, :if => Proc.new { |c| c.mobile_device? }
-    
+
     def index
-        
+
     end
 
     def mobile_device?
