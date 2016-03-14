@@ -6,6 +6,9 @@ rvm:
   - 2.2.2
 script: bundle exec rspec spec
 gemfile:
+  - gemfiles/Gemfile.split-1.2-stable
+  - gemfiles/Gemfile.split-1.1-stable
+  - gemfiles/Gemfile.split-1.0-stable
   - gemfiles/Gemfile.rails-4.2-stable
   - gemfiles/Gemfile.rails-4.1-stable
   - gemfiles/Gemfile.rails-4.0-stable
