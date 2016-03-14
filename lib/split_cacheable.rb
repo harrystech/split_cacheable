@@ -59,7 +59,9 @@ module Split
                 if !defined?(@controller.request) || @controller.request.nil?
                     return DEFAULT_KEY
                 else
-                    return !active_tests.empty? ? active_tests.map{|test_obj| "#{test_obj[:test_name]}/#{@controller.ab_test(test_obj[:test_name])}"}.join('/') : DEFAULT_KEY
+                    return !active_tests.empty? ? active_tests.map{ |test_obj|
+                        "#{test_obj[:test_name]}/#{@controller.send(:ab_test, test_obj[:test_name])}"
+                    }.join('/') : DEFAULT_KEY
                 end
             end
 
